@@ -15,31 +15,35 @@ const Header = () => {
 
     </>
     return (
-        <div className="">
-            <div className="navbar bg-[#00000069] text-white absolute">
-                <div className="navbar-start">
-                    <div className="dropdown">
-                        <label tabIndex={0} className="btn btn-ghost md:hidden ">
-                            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
-                        </label>
-                        <ul tabIndex={0} className=" dropdown-content mt-3 z-[1] p-2 shadow bg-[#00000069] rounded-box w-max activelink flex flex-col justify-start gap-2">
+        
+            <div className="relative">
+                <div className="">
+                <div className="navbar  text-white absolute bg-[#00000069]">
+                    <div className="navbar-start ">
+                        <div className="dropdown">
+                            <label tabIndex={0} className="btn btn-ghost md:hidden ">
+                                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
+                            </label>
+                            <ul tabIndex={0} className=" dropdown-content mt-3 z-[1] p-2 shadow bg-[#00000069] rounded-box w-max activelink flex flex-col justify-start gap-2">
+                                {navli}
+                            </ul>
+                        </div>
+                        <a className="normal-case text-xl">
+                            <img className="h-[80px]" src={logo} alt="" />
+                        </a>
+                    </div>
+                    <div className="navbar-center hidden md:flex">
+                        <ul className="flex gap-4 px-1 activelink">
                             {navli}
                         </ul>
                     </div>
-                    <a className="normal-case text-xl">
-                        <img className="h-[80px]" src={logo} alt="" />
-                    </a>
+                    <div className="navbar-end">
+                        <a className="btn text-white border-none font-bold bg-[#6c0ed2] hover:bg-[#4f1091] ">Log In</a>
+                    </div>
                 </div>
-                <div className="navbar-center hidden md:flex">
-                    <ul className="flex gap-4 px-1 activelink">
-                        {navli}
-                    </ul>
-                </div>
-                <div className="navbar-end">
-                    <a className="btn text-white border-none font-bold bg-[#6c0ed2] hover:bg-[#4f1091] ">Log In</a>
                 </div>
             </div>
-        </div>
+        
     );
 };
 
