@@ -5,13 +5,13 @@ import './Header.css'
 import logo from '../../assets/pandalogo.com.png'
 const Header = () => {
     const navli = <>
-        <li ><NavLink className='p-1.5' to='/'>Home</NavLink></li>
+        <li ><NavLink className='p-1.5 hover:underline' to='/'>Home</NavLink></li>
         <hr />
-        <li><NavLink className='p-1.5' to='/addproducts'>Add Product</NavLink></li>
+        <li><NavLink className='p-1.5 hover:underline' to='/addproducts'>Add Product</NavLink></li>
         <hr />
-        <li><NavLink className='p-1.5' to='/mycart'>My Cart</NavLink></li>
+        <li><NavLink className='p-1.5 hover:underline' to='/mycart'>My Cart</NavLink></li>
         <hr />
-        <li><NavLink className='p-1.5' to='/login'>Login</NavLink></li>
+        <li><NavLink className='p-1.5 hover:underline' to='/login'>Login</NavLink></li>
 
     </>
     return (
