@@ -38,17 +38,17 @@ const AddProducts = () => {
         const details = form.details.value
         const addedproduct = { name, brandname, photo, price: parseFloat(price), category, rating: parseInt(rating), details }
         console.log(addedproduct);
-        fetch('http://localhost:3000/apple', {
-            method: 'POST',
-            headers: {
-                'content-type': 'application/json',
-            },
-            body: JSON.stringify(addedproduct)
-        })
-        .then(res=>res.json())
-        .then(data=> {
-            console.log(data);
-        })
+        // fetch('http://localhost:3000/xiaomi', {
+        //     method: 'POST',
+        //     headers: {
+        //         'content-type': 'application/json',
+        //     },
+        //     body: JSON.stringify(addedproduct)
+        // })
+        // .then(res=>res.json())
+        // .then(data=> {
+        //     console.log(data);
+        // })
     }
     return (
         <div className="pt-32 max-w-7xl mx-auto">
@@ -91,16 +91,18 @@ const AddProducts = () => {
                                     <select className=" border border-[#e6e3e3f1]  w-full rounded-b-lg p-3 bg-purple-100" value={category} onChange={handleCategory}>
                                         <option value="" disabled>Select category</option>
                                         <option>Phone</option>
-                                        <option>Computer</option>
+                                        <option>Smart Watch</option>
+                                        <option>PC</option>
                                         <option>Laptop</option>
                                         <option>HeadPhone</option>
                                         <option>Tablet</option>
+                                        <option>Camera</option>
                                         <option>Mouse</option>
                                         <option>KeyBoard</option>
                                         <option>Air Birds</option>
                                         <option>Smart Tv</option>
                                         <option>Speaker</option>
-                                        <option>Processor</option>
+                                        <option>Proccessor</option>
                                         <option>Fan</option>
                                         <option>Router</option>
                                         <option>Printer</option>
