@@ -1,24 +1,30 @@
 // import React from 'react';
 
-import { useLoaderData } from "react-router-dom";
+import { Link, useLoaderData,  useParams } from "react-router-dom";
 import { Swiper, SwiperSlide } from 'swiper/react';
 
-import { Navigation, Scrollbar, A11y, Autoplay } from 'swiper/modules';
+import { Navigation, Scrollbar, A11y,Autoplay } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/bundle';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
 import 'swiper/css/a11y';
+
+
 import { EffectCube } from 'swiper/modules';
 import { useEffect, useState } from "react";
 import Rating from "react-rating";
 import { FaRegFaceSadTear } from 'react-icons/fa6';
 import { AiOutlineStar, AiFillStar } from 'react-icons/ai';
+
 const BrandProducts = () => {
     const loadeddata = useLoaderData();
-    const [products, setproducts] = useState([]);
-    const { id, name, img, banner1, banner2, banner3, title } = loadeddata;
+     const [products, setproducts] = useState([]);
+    const {id: brand} = useParams();
+    
+   
+    const { id, name, img, banner1, banner2, banner3, title } =loadeddata;
     useEffect(() => {
         fetch(`http://localhost:3000/${name}`)
             .then(res => res.json())
@@ -29,11 +35,11 @@ const BrandProducts = () => {
     return (
         <div className="max-w-7xl mx-auto">
 
-            <div className={`${products.length < 1 ? 'hidden' : 'block'}`}>
+            <div>
                 <div >
 
-                    <div className="overflow-hidden">
-                        <Swiper
+                    <div className={`overflow-hidden`}>
+                        <Swiper className={`${products.length<1 ? 'mt-[-1000px]': ''}`}
                             modules={[Navigation, Scrollbar, A11y, EffectCube, Autoplay]}
                             spaceBetween={50}
                             slidesPerView={1}
@@ -55,8 +61,8 @@ const BrandProducts = () => {
 
                         </Swiper>
                     </div>
-
-                    <div>
+          
+                    <div className={`${(products.length < 1) ? 'hidden' : 'block'}`}>
                         <h2 className="text-4xl font-bold text-center py-7">{title}s</h2>
                         <div className="flex flex-wrap justify-center items-center gap-7 my-10 p-4">
                             {
@@ -87,7 +93,7 @@ const BrandProducts = () => {
                                             </div>
                                             <div className=" gap-4 sm:text-end px-4 mt-6">
 
-                                                <button className="btn btn-neutral mr-4">Details</button>
+                                                <Link to={`/${brand}/${product._id}`}><button className="btn btn-neutral mr-4">Details</button></Link>
 
 
                                                 <button className="btn btn-neutral">Update</button>
@@ -101,7 +107,9 @@ const BrandProducts = () => {
                     </div>
                 </div>
             </div>
-            <div className={`${!(products.length < 1) ? 'hidden' : 'block'}`}>
+            <div 
+              className={`${!(products.length < 1) ? 'hidden' : 'block'}`}
+            >
                 <div className="flex flex-col justify-center items-center gap-5 h-[100vh]">
                     <h2 className="text-9xl font-bold text-red-500"><FaRegFaceSadTear></FaRegFaceSadTear></h2>
                     <h2 className="text-5xl font-bold">Sorry!!!</h2>
