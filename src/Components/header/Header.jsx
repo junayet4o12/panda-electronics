@@ -7,7 +7,7 @@ const Header = () => {
     const navli = <>
         <li ><NavLink className='p-1.5' to='/'>Home</NavLink></li>
         <hr />
-        <li><NavLink className='p-1.5' to='/addproduct'>Add Product</NavLink></li>
+        <li><NavLink className='p-1.5' to='/addproducts'>Add Product</NavLink></li>
         <hr />
         <li><NavLink className='p-1.5' to='/mycart'>My Cart</NavLink></li>
         <hr />

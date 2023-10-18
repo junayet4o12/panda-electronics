@@ -5,6 +5,7 @@ import {
 import Main from "./Components/Main";
 import Home from "./Components/Home";
 import BrandProducts from "./Components/Brand/BrandProducts";
+import AddProducts from "./Components/AddProducts";
 
   const Myrouter = createBrowserRouter([
     {
@@ -20,6 +21,10 @@ import BrandProducts from "./Components/Brand/BrandProducts";
             path:'/products/:id',
             element: <BrandProducts></BrandProducts>,
             loader: ({params})=> fetch(`http://localhost:3000/company/${params.id}`) 
+        },
+        {
+            path: '/addproducts',
+            element: <AddProducts></AddProducts>
         }
       ]
     },

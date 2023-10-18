@@ -7,7 +7,7 @@ import { HiOutlineLightBulb} from 'react-icons/hi';
 import { GrVmMaintenance} from 'react-icons/gr';
 const Services = () => {
     return (
-        <div>
+        <div className="max-w-7xl mx-auto py-14">
             <h2 className="text-4xl font-bold text-center pt-7 mb-4">Our Services</h2>
             <p  className="w-[90%] sm:w-[80%] md:w-[70%] lg:w-[60%] text-center mx-auto text-sm font-semibold pt-4 pb-7">We empower you with advanced tech solutions. From expert support to tailored services, we&apos;re your tech partner. Contact us to elevate your digital journey today.</p>
             <div className="w-full bg-center bg-cover " style={{ backgroundImage: `url(${bg})` }}>
