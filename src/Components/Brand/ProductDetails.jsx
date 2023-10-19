@@ -32,7 +32,7 @@ const ProductDetails = () => {
                 console.log(data);
                 if (data.acknowledged) {
                     Swal.fire({
-                       
+
                         icon: 'success',
                         title: 'Your cart has been added.',
                         showConfirmButton: false,
@@ -66,7 +66,7 @@ const ProductDetails = () => {
                     <div className="">
                         <p className="text-3xl font-bold text-blue-600"> Brand: {product?.brandname}</p>
                         <p className=" font-bold text-xl">Price: {product?.price} BDT</p>
-                        <p className="text-base font-bold text-justify">{seemore ? ((product?.details)?.slice(0, 200) + '....') : product?.details} <br /> <span className="text-blue-500 text-lg cursor-pointer" onClick={handleseemore}>{seemore ? 'See more' : 'See less'}</span></p>
+                        <p className="text-base font-bold text-justify">{(product?.details?.length > 200) ? (seemore ? ((product?.details)?.slice(0, 200) + '....') : product?.details) : product?.details} <br /> <span className={`${(product?.details?.length<=200) && 'hidden'}`}><span className="text-blue-500 text-lg cursor-pointer" onClick={handleseemore}>{seemore ? 'See more' : 'See less'}</span></span></p>
                     </div>
                     <div className=" gap-4 text-end px-4 mt-6">
 

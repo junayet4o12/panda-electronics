@@ -26,7 +26,7 @@ const AddToCart = () => {
                 .then(res => res.json())
                 .then(data => {
                     console.log(data);
-                    const newproducts = products.filter(product=> product._id !== _id)
+                    const newproducts = products.filter(product => product._id !== _id)
 
                     setproducts(newproducts);
                     if (data.deletedCount > 0) {
@@ -70,7 +70,7 @@ const AddToCart = () => {
                                 <div>
                                     <p className="text-xl font-bold "> Brand: {product?.brandname}</p>
                                     <p className=" font-bold ">Price: {product?.price} BDT</p>
-                                    <p className="text-sm font-semibold max-w-[280px] sm:max-w-[400px]">{(product?.details)?.slice(0, 150)}....</p>
+                                    <p className="text-sm font-semibold max-w-[280px] sm:max-w-[400px]">{(product?.details?.length > 150) ? ((product?.details)?.slice(0, 150) + '....') : product?.details}</p>
                                 </div>
                                 <div className=" gap-4 sm:text-end px-4 mt-6">
 

@@ -89,14 +89,15 @@ const BrandProducts = () => {
                                             <div>
                                                 <p className="text-xl font-bold "> Brand: {product?.brandname}</p>
                                                 <p className=" font-bold ">Price: {product?.price} BDT</p>
-                                                <p className="text-sm font-semibold max-w-[280px] sm:max-w-[400px]">{(product?.details)?.slice(0, 100)}....</p>
+                                                <p className="text-sm font-semibold max-w-[280px] sm:max-w-[400px]">{(product?.details?.length>100)? ((product?.details)?.slice(0, 100)+'....'): product?.details}</p>
                                             </div>
                                             <div className=" gap-4 sm:text-end px-4 mt-6">
 
                                                 <Link to={`/${brand}/${product._id}`}><button className="btn btn-neutral mr-4">Details</button></Link>
+                                                <Link to={`/update/${brand}/${product._id}`}><button className="btn btn-neutral mr-4">Update</button></Link>
 
 
-                                                <button className="btn btn-neutral">Update</button>
+                                               
 
                                             </div>
                                         </div>
