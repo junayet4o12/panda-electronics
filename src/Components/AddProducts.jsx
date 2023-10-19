@@ -1,6 +1,7 @@
 // import React from 'react';
 
 import { useState } from "react";
+import Swal from "sweetalert2";
 
 const AddProducts = () => {
     const [category, setcategory] = useState('');
@@ -38,20 +39,30 @@ const AddProducts = () => {
         const details = form.details.value
         const addedproduct = { name, brandname, photo, price: parseFloat(price), category, rating: parseInt(rating), details }
         console.log(addedproduct);
-        // fetch('http://localhost:3000/xiaomi', {
-        //     method: 'POST',
-        //     headers: {
-        //         'content-type': 'application/json',
-        //     },
-        //     body: JSON.stringify(addedproduct)
-        // })
-        // .then(res=>res.json())
-        // .then(data=> {
-        //     console.log(data);
-        // })
+        fetch('http://localhost:3000/client', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json',
+            },
+            body: JSON.stringify(addedproduct)
+        })
+        .then(res=>res.json())
+        .then(data=> {
+            console.log(data);
+            if (data.acknowledged) {
+                Swal.fire({
+                   
+                    icon: 'success',
+                    title: 'Your cart has been added.',
+                    showConfirmButton: false,
+                    timer: 1500
+                })
+            }
+        })
     }
     return (
         <div className="pt-32 max-w-7xl mx-auto">
+            <h2 className="text-4xl font-bold text-center pb-10">Add product to your cart</h2>
             <form onSubmit={handleAddingData}>
                 <div className="flex flex-col  gap-8 lg:w-[90%] mx-auto">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-x-4 gap-y-8 px-4">

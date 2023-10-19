@@ -5,14 +5,43 @@ import { useLoaderData, useParams } from "react-router-dom";
 // import { FaRegFaceSadTear } from 'react-icons/fa6';
 import { AiOutlineStar, AiFillStar } from 'react-icons/ai';
 import { useState } from "react";
+import Swal from "sweetalert2";
 const ProductDetails = () => {
     const product = useLoaderData();
     const { id } = useParams();
     const [seemore, setseemore] = useState(true);
+    console.log(product);
+    const { name, brandname, photo, price, category, rating, details } = product;
+    const addindproduct = { name, brandname, photo, price, category, rating, details }
+
     const handleseemore = () => {
         setseemore(!seemore);
     }
     console.log(id);
+
+    const handleaddtocart = () => {
+        fetch('http://localhost:3000/client', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(addindproduct)
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+                if (data.acknowledged) {
+                    Swal.fire({
+                       
+                        icon: 'success',
+                        title: 'Your cart has been added.',
+                        showConfirmButton: false,
+                        timer: 1500
+                    })
+                }
+
+            })
+    }
     return (
         <div className="pt-20 max-w-7xl mx-auto">
             <h2 className="text-3xl font-bold text-center py-7">{product.name} Details</h2>
@@ -37,14 +66,14 @@ const ProductDetails = () => {
                     <div className="">
                         <p className="text-3xl font-bold text-blue-600"> Brand: {product?.brandname}</p>
                         <p className=" font-bold text-xl">Price: {product?.price} BDT</p>
-                        <p className="text-base font-bold text-justify">{seemore ? ((product?.details)?.slice(0,200) + '....') : product?.details} <br /> <span className="text-blue-500 text-lg cursor-pointer" onClick={handleseemore}>{seemore ? 'See more': 'See less'}</span></p>
+                        <p className="text-base font-bold text-justify">{seemore ? ((product?.details)?.slice(0, 200) + '....') : product?.details} <br /> <span className="text-blue-500 text-lg cursor-pointer" onClick={handleseemore}>{seemore ? 'See more' : 'See less'}</span></p>
                     </div>
                     <div className=" gap-4 text-end px-4 mt-6">
 
-                        
 
 
-                        <button className="btn btn-primary">Add to Cart</button>
+
+                        <button onClick={handleaddtocart} className="btn btn-primary">Add to Cart</button>
 
                     </div>
                 </div>

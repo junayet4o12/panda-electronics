@@ -10,6 +10,7 @@ import ProductDetails from "./Components/Brand/ProductDetails";
 import LogIn from "./Components/LogIn";
 import Register from "./Components/Register";
 import PrivateRouts from "./Components/PrivateRouts";
+import AddToCart from "./Components/AddToCart";
 
 const Myrouter = createBrowserRouter([
     {
@@ -42,6 +43,11 @@ const Myrouter = createBrowserRouter([
             {
                 path: '/register',
                 element: <Register></Register>
+            },
+            {
+                path: '/mycart',
+                element: <PrivateRouts><AddToCart></AddToCart></PrivateRouts>,
+                loader: () => fetch('http://localhost:3000/client')
             }
         ]
     },
