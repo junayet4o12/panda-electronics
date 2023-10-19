@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 // import React from 'react';
 
 import { useState } from "react";
@@ -6,7 +7,6 @@ import Brands from "./Brands";
 const Brand = ({loadedbrands}) => {
     
     const [brands, setbrands]= useState(loadedbrands);
-    console.log(brands);
     return (
         <div>
             <h2 className="text-5xl font-bold text-center pt-7">Product&apos;s Brands</h2>

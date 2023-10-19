@@ -93,7 +93,7 @@ const BrandProducts = () => {
                                             </div>
                                             <div className=" gap-4 sm:text-end px-4 mt-6">
 
-                                                <Link to={`/${brand}/${product._id}`}><button className="btn btn-neutral mr-4">Details</button></Link>
+                                                <Link to={`/details/${brand}/${product._id}`}><button className="btn btn-neutral mr-4">Details</button></Link>
                                                 <Link to={`/update/${brand}/${product._id}`}><button className="btn btn-neutral mr-4">Update</button></Link>
 
 

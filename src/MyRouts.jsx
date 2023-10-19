@@ -12,11 +12,13 @@ import Register from "./Components/Register";
 import PrivateRouts from "./Components/PrivateRouts";
 import AddToCart from "./Components/AddToCart";
 import UpdateProduct from "./Components/UpdateProduct";
+import Error from "./Components/Error/Error";
 
 const Myrouter = createBrowserRouter([
     {
         path: "/",
         element: <Main></Main>,
+        errorElement: <Error></Error>,
         children: [
             {
                 path: '/',
@@ -33,7 +35,7 @@ const Myrouter = createBrowserRouter([
                 element: <AddProducts></AddProducts>
             },
             {
-                path: '/:brand/:id',
+                path: '/details/:brand/:id',
                 element: <PrivateRouts><ProductDetails></ProductDetails></PrivateRouts>,
                 loader: ({ params }) => fetch(`http://localhost:3000/${params.brand}/${params.id}`)
             },

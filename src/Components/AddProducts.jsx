@@ -1,9 +1,11 @@
 // import React from 'react';
 
-import { useState } from "react";
+import { useContext, useState } from "react";
 import Swal from "sweetalert2";
+import { AuthContext } from "./Firebase.jsx/AuthProviders";
 
 const AddProducts = () => {
+    const {user} = useContext(AuthContext);
     const [category, setcategory] = useState('');
     const [rating, setrating] = useState('');
     const [categoryerror, setcategoryerror] = useState('');
@@ -37,7 +39,7 @@ const AddProducts = () => {
         const photo = form.photo.value;
         const price = form.price.value;
         const details = form.details.value
-        const addedproduct = { name, brandname, photo, price: parseFloat(price), category, rating: parseInt(rating), details }
+        const addedproduct = { client: user?.email, name, brandname, photo, price: parseFloat(price), category, rating: parseInt(rating), details }
         console.log(addedproduct);
         fetch('http://localhost:3000/client', {
             method: 'POST',
