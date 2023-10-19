@@ -1,9 +1,15 @@
 // import React from 'react';
 
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import './Header.css'
 import logo from '../../assets/pandalogo.com.png'
+import { AuthContext } from "../Firebase.jsx/AuthProviders";
+import { useContext } from "react";
+import userimg from '../../assets/pandalogo.com.png'
 const Header = () => {
+    const { user, logout } = useContext(AuthContext);
+  
+    
     const navli = <>
         <li ><NavLink className='p-1.5 hover:underline' to='/'>Home</NavLink></li>
         <hr />
@@ -15,9 +21,9 @@ const Header = () => {
 
     </>
     return (
-        
-            <div className="relative">
-                <div className="">
+
+        <div className="relative">
+            <div className="">
                 <div className="navbar  text-white absolute bg-[#00000069]">
                     <div className="navbar-start ">
                         <div className="dropdown">
@@ -38,12 +44,30 @@ const Header = () => {
                         </ul>
                     </div>
                     <div className="navbar-end">
-                        <a className="btn text-white border-none font-bold bg-[#6c0ed2] hover:bg-[#4f1091] ">Log In</a>
+
+                        <div className="flex gap-1 justify-center items-center">
+                            {
+                                user ? <>
+                                    <div className='mr-5  flex flex-col justify-center items-center'>
+                                        <div className='w-10 h-10 rounded-full bg-white overflow-hidden'>
+                                            <img className="w-full h-full" src={user.photoURL ? user.photoURL : userimg} alt="" />
+                                         </div>
+                                        <p className='text-white font-bold font-sm'>{user?.displayName?.split(' ')[0] || 'Undefined'}</p>
+                                    </div>
+                                    <button onClick={() => logout()} className="btn btn-primary text-white font-bold border-none px-5">log out</button>
+
+                                </> : <Link to='/login'>
+                                    <button className="btn btn-primary text-white font-bold border-none px-5">log in</button>
+                                </Link>
+
+                            }
+                        </div>
+                        
                     </div>
                 </div>
-                </div>
             </div>
-        
+        </div>
+
     );
 };
 

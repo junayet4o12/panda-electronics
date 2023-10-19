@@ -5,12 +5,19 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import { AuthContext } from "./Firebase.jsx/AuthProviders";
 import { FaGoogle } from 'react-icons/fa';
+import { AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai';
 const LogIn = () => {
     const [doneerror, setdoneerror] = useState('')
+    const [showpass, setshowpass] = useState(true);
+    const [passvalue, setpassvalue] = useState(null)
     const { loginuser, googlelogin } = useContext(AuthContext);
     const navigate = useNavigate()
     const location = useLocation()
 
+    const handlepassvalue = (e) => {
+        e.preventDefault()
+        setpassvalue(e.target.value);
+    }
     const handlesubmit = (e) => {
         e.preventDefault()
         setdoneerror('');
@@ -78,7 +85,10 @@ const LogIn = () => {
                                 <label className="label">
                                     <span className="label-text">Password</span>
                                 </label>
-                                <input type="password" name="password" placeholder="Your password" className="input input-bordered" required />
+                                <div className="w-full relative">
+                                    <input onChange={handlepassvalue} type={showpass ? 'password' : 'text'} name="password" placeholder="Your password" className="input input-bordered w-full" required />
+                                    <p  onClick={() => (setshowpass(!showpass))} className={`absolute top-3 right-0 mr-2 cursor-pointer text-lg  p-1 ${!passvalue && 'hidden'}`}>{showpass ? <AiOutlineEye></AiOutlineEye> : <AiOutlineEyeInvisible></AiOutlineEyeInvisible>}</p>
+                                </div>
                                 <div className="text-sm font-bold">{doneerror}</div>
                                 <label className="label">
                                     <a href="#" className="label-text-alt link link-hover">Forgot password?</a>
@@ -86,7 +96,10 @@ const LogIn = () => {
                             </div>
                             <div className="form-control mt-6">
                                 <button className="btn btn-primary">Login</button>
-                                <p onClick={handlegooglelogin} className="btn btn-primary mt-4"><FaGoogle></FaGoogle>Log in with Google</p>
+
+                                <p onClick={handlegooglelogin} className="btn btn-primary mt-4 "><FaGoogle></FaGoogle>Log in with Google</p>
+
+
                             </div>
                             <div>
                                 <p className="text-sm font-medium">Do not have an account? <Link className="font-bold hover:text-blue-500" to='/register'>Register</Link></p>
