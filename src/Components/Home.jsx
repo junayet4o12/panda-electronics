@@ -6,13 +6,12 @@ import Brand from "./Brand/Brand";
 import Footer from "./Footer";
 import Services from "./Services";
 import ContactUs from "./ContactUs";
-import { useState } from "react";
 import { AuthContext } from './Firebase.jsx/AuthProviders';
 
 const Home = () => {
     
     const loadedbrands = useLoaderData();
-    const {theme, toggleTheme} = useContext(AuthContext)
+    const {theme } = useContext(AuthContext)
     
 
     return (

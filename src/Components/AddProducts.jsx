@@ -59,6 +59,9 @@ const AddProducts = () => {
                     showConfirmButton: false,
                     timer: 1500
                 })
+                e.target.reset()
+                e.target.category.value = '';
+                e.target.rating.value = '';
             }
         })
     }
@@ -101,7 +104,7 @@ const AddProducts = () => {
                             </label>
                             <div className="form-control w-full">
                                 <div className="w-full flex">
-                                    <select className=" border border-[#e6e3e3f1]  w-full rounded-b-lg p-3 bg-purple-100" value={category} onChange={handleCategory}>
+                                    <select name="category" className=" border border-[#e6e3e3f1]  w-full rounded-b-lg p-3 bg-purple-100" value={category} onChange={handleCategory}>
                                         <option value="" disabled>Select category</option>
                                         <option>Phone</option>
                                         <option>Smart Watch</option>
@@ -151,7 +154,7 @@ const AddProducts = () => {
                             </label>
                             <div className="form-control w-full">
                                 <div className="w-full flex">
-                                    <select className=" border border-[#e6e3e3f1]  w-full rounded-b-lg p-3 bg-purple-100" value={rating} onChange={handleRating}>
+                                    <select name="rating" className=" border border-[#e6e3e3f1]  w-full rounded-b-lg p-3 bg-purple-100" value={rating} onChange={handleRating}>
                                         <option value="" disabled>Select Rating</option>
                                         <option>1</option>
                                         <option>2</option>
