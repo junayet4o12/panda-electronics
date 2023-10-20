@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 //* eslint-disable react/prop-types */
 import { GoogleAuthProvider, createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut } from "firebase/auth";
-import { createContext, useEffect, useState } from "react";
+import React, { createContext, useEffect, useState } from "react";
 import auth from "./firebase.config";
 
 
@@ -12,7 +12,16 @@ export const AuthContext = createContext(null);
 const AuthProviders = ({ children }) => {
     const [user, setuser] = useState(null)
     const [loading, setloading] = useState(true);
-    
+    const [theme, settheme] = useState(true);
+    const [fulltheme, setfulltheme] = useState('light');
+    const toggleTheme = () => {
+        settheme(!theme);
+        // settheme(theme === 'dark' ? 'light' : 'dark')
+        setfulltheme(!theme ? 'light' : 'dark')
+    };
+       React.useEffect(() => {
+         document.querySelector('html').setAttribute('data-theme', fulltheme);
+      }, [fulltheme]);
     const createuser = (email, password) => {
         setloading(true)
         return createUserWithEmailAndPassword(auth, email, password)
@@ -41,7 +50,7 @@ const AuthProviders = ({ children }) => {
     }, [])
 
     
-    const authInfo = { createuser, user, logout, loginuser,googlelogin, loading }
+    const authInfo = { createuser, user, logout, loginuser,googlelogin, loading, toggleTheme, theme }
     return (
         <AuthContext.Provider value={authInfo}>
             {children}

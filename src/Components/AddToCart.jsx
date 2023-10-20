@@ -8,11 +8,17 @@ import { AiOutlineStar, AiFillStar } from 'react-icons/ai';
 import Swal from "sweetalert2";
 import { AuthContext } from "./Firebase.jsx/AuthProviders";
 const AddToCart = () => {
+    let loading = true
     const { user } = useContext(AuthContext);
+    loading = true
     const loadeddata = useLoaderData();
-    const usercart = loadeddata.filter(data => data?.client == user?.email);
+    loading = true
+    const usercart = loadeddata?.filter(data => data?.client == user?.email);
+    loading = true
     console.log(usercart);
+    
     const [products, setproducts] = useState(usercart);
+    loading = false
     const handleDelete = (_id) => {
         Swal.fire({
             title: 'Are you sure?',
@@ -22,37 +28,43 @@ const AddToCart = () => {
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
             confirmButtonText: 'Yes, delete it!'
-        }).then(() => {
-            fetch(`http://localhost:3000/client/${_id}`, {
-                method: 'DELETE'
-            })
-                .then(res => res.json())
-                .then(data => {
-                    console.log(data);
-                    const newproducts = products.filter(product => product._id !== _id)
-
-                    setproducts(newproducts);
-                    if (data.deletedCount > 0) {
-
-                        Swal.fire(
-                            'Deleted!',
-                            'Your product has been deleted.',
-                            'success'
-                        )
-                    }
-
+        }).then((result) => {
+            if (result.isConfirmed) {
+                fetch(`https://panda-technology-and-electronics-backend-qzcawtmyu.vercel.app/client/${_id}`, {
+                    method: 'DELETE'
                 })
+                    .then(res => res.json())
+                    .then(data => {
+                        console.log(data);
+                        const newproducts = products?.filter(product => product?._id !== _id)
+
+                        setproducts(newproducts);
+                        if (data.deletedCount > 0) {
+
+                            Swal.fire(
+                                'Deleted!',
+                                'Your product has been deleted.',
+                                'success'
+                            )
+                        }
+
+                    })
+            }
+
 
         })
     }
+    if(loading){
+        return <p></p>;
+    }
     return (
         <div>
-            <div  className={`${(products.length < 1) ? 'hidden' : 'block'} py-24`}>
+            <div className={`${(products?.length < 1) ? 'hidden' : 'block'} py-24`}>
                 <div>
                     <h2 className="text-4xl font-bold text-center pt-7">My Added Product</h2>
                     <div className="flex flex-wrap justify-center items-center gap-7 my-10 p-4">
                         {
-                            products.map(product => <div key={product?._id} className="shadow-lg shadow-black rounded-xl bg-gray-100 w-[80%] sm:w-max">
+                            products?.map(product => <div key={product?._id} className="shadow-lg shadow-black rounded-xl bg-gray-100 w-[80%] sm:w-max">
 
                                 <div className="flex flex-col ">
                                     <div className="h-[250px] sm:h-[266px] w-full sm:w-[400px] bg-no-repeat bg-cover bg-center rounded-xl rounded-b-md  relative " style={{ backgroundImage: `Url(${product?.photo})` }}>
@@ -71,7 +83,7 @@ const AddToCart = () => {
                                             </div>
                                         </div>
                                     </div>
-                                    <div className="p-2 flex flex-col justify-between pb-7">
+                                    <div className="p-2 flex flex-col justify-between pb-7 text-black">
                                         <div>
                                             <p className="text-xl font-bold "> Brand: {product?.brandname}</p>
                                             <p className=" font-bold ">Price: {product?.price} BDT</p>

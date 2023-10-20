@@ -1,0 +1,29 @@
+.rotate {
+    animation: rotateAnimation 7s linear infinite;
+    transform-origin: center;
+}
+
+@keyframes rotateAnimation {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.rotate2 {
+    animation: rotateAnimation2 7s linear infinite;
+    transform-origin: center;
+}
+
+@keyframes rotateAnimation2 {
+    from {
+        transform: rotate(360deg);
+    }
+
+    to {
+        transform: rotate(0deg);
+    }
+}

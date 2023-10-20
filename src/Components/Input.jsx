@@ -14,7 +14,7 @@ const Input = () => {
         const title = form.title.value;
         const company = {id, name, img, banner1, banner2, banner3, title}
         console.log(company);
-        fetch('http://localhost:3000/company', {
+        fetch('https://panda-technology-and-electronics-backend-qzcawtmyu.vercel.app/company', {
             method: 'POST',
             headers: {
               'content-type': 'application/json',  

@@ -23,12 +23,12 @@ const Myrouter = createBrowserRouter([
             {
                 path: '/',
                 element: <Home></Home>,
-                loader: () => fetch('http://localhost:3000/company')
+                loader: () => fetch('https://panda-technology-and-electronics-backend-qzcawtmyu.vercel.app/company')
             },
             {
                 path: '/products/:id',
                 element: <BrandProducts></BrandProducts>,
-                loader: ({ params }) => fetch(`http://localhost:3000/company/${params.id}`)
+                loader: ({ params }) => fetch(`https://panda-technology-and-electronics-backend-qzcawtmyu.vercel.app/company/${params.id}`)
             },
             {
                 path: '/addproducts',
@@ -37,12 +37,12 @@ const Myrouter = createBrowserRouter([
             {
                 path: '/details/:brand/:id',
                 element: <PrivateRouts><ProductDetails></ProductDetails></PrivateRouts>,
-                loader: ({ params }) => fetch(`http://localhost:3000/${params.brand}/${params.id}`)
+                loader: ({ params }) => fetch(`https://panda-technology-and-electronics-backend-qzcawtmyu.vercel.app/${params.brand}/${params.id}`)
             },
             {
                 path: '/update/:brand/:id',
                 element: <PrivateRouts><UpdateProduct></UpdateProduct></PrivateRouts>,
-                loader: ({ params }) => fetch(`http://localhost:3000/${params.brand}/${params.id}`)
+                loader: ({ params }) => fetch(`https://panda-technology-and-electronics-backend-qzcawtmyu.vercel.app/${params.brand}/${params.id}`)
             },
             {
                 path: '/login',
@@ -55,7 +55,7 @@ const Myrouter = createBrowserRouter([
             {
                 path: '/mycart',
                 element: <PrivateRouts><AddToCart></AddToCart></PrivateRouts>,
-                loader: () => fetch('http://localhost:3000/client')
+                loader: () => fetch('https://panda-technology-and-electronics-backend-qzcawtmyu.vercel.app/client')
             }
         ]
     },

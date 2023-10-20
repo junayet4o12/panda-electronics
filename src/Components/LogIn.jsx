@@ -102,7 +102,7 @@ const LogIn = () => {
 
                             </div>
                             <div>
-                                <p className="text-sm font-medium">Do not have an account? <Link className="font-bold hover:text-blue-500" to='/register'>Register</Link></p>
+                                <p className="text-sm font-medium text-center">Do not have an account? <Link className="font-bold hover:text-blue-500" to='/register'>Register</Link></p>
                             </div>
                         </form>
                     </div>

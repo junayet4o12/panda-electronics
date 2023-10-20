@@ -41,7 +41,7 @@ const AddProducts = () => {
         const details = form.details.value
         const addedproduct = { client: user?.email, name, brandname, photo, price: parseFloat(price), category, rating: parseInt(rating), details }
         console.log(addedproduct);
-        fetch('http://localhost:3000/client', {
+        fetch('https://panda-technology-and-electronics-backend-qzcawtmyu.vercel.app/client', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json',
@@ -65,7 +65,7 @@ const AddProducts = () => {
     return (
         <div className="pt-32 max-w-7xl mx-auto">
             <h2 className="text-4xl font-bold text-center pb-10">Add product to your cart</h2>
-            <form onSubmit={handleAddingData}>
+            <form onSubmit={handleAddingData} className="text-black">
                 <div className="flex flex-col  gap-8 lg:w-[90%] mx-auto">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-x-4 gap-y-8 px-4">
                         <div className="form-control">

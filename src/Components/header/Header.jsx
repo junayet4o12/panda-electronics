@@ -5,7 +5,7 @@ import './Header.css'
 import logo from '../../assets/pandalogo.com.png'
 import { AuthContext } from "../Firebase.jsx/AuthProviders";
 import { useContext } from "react";
-import userimg from '../../assets/pandalogo.com.png'
+import userimg from '../../assets/pandaface.webp'
 const Header = () => {
     const { user, logout } = useContext(AuthContext);
   
@@ -35,11 +35,11 @@ const Header = () => {
                             </ul>
                         </div>
                         <a className="normal-case text-xl">
-                            <img className="h-[80px]" src={logo} alt="" />
+                            <img className="h-[50px] sm:h-[80px] md:h-[70px]" src={logo} alt="" />
                         </a>
                     </div>
                     <div className="navbar-center hidden md:flex">
-                        <ul className="flex gap-4 px-1 activelink">
+                        <ul className="flex gap-3 px-1 activelink">
                             {navli}
                         </ul>
                     </div>
@@ -48,16 +48,16 @@ const Header = () => {
                         <div className="flex gap-1 justify-center items-center">
                             {
                                 user ? <>
-                                    <div className='mr-5  flex flex-col justify-center items-center'>
+                                    <div className='mr-2  flex flex-col justify-center items-center'>
                                         <div className='w-10 h-10 rounded-full bg-white overflow-hidden'>
                                             <img className="w-full h-full" src={user.photoURL ? user.photoURL : userimg} alt="" />
                                          </div>
-                                        <p className='text-white font-bold font-sm'>{user?.displayName?.split(' ')[0] || 'Undefined'}</p>
+                                        <p className='text-white font-bold font-sm hidden sm:block'>{user?.displayName?.split(' ')[0] || 'Undefined'}</p>
                                     </div>
                                     <button onClick={() => logout()} className="btn btn-primary text-white font-bold border-none px-5">log out</button>
 
-                                </> : <Link to='/login'>
-                                    <button className="btn btn-primary text-white font-bold border-none px-5">log in</button>
+                                </> : <Link to='/register'>
+                                    <button className="btn btn-primary text-white font-bold border-none px-5">Register</button>
                                 </Link>
 
                             }

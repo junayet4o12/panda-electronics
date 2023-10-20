@@ -25,9 +25,11 @@ const Register = () => {
         const name = form.get('name');
         const email = form.get('email');
         const password = form.get('password');
-        if (!/^(?=.*[A-Z])(?=.*[!@#$%^&*(),.?":{}|<>])[A-Za-z0-9!@#$%^&*(),.?":{}|<>]{6,}$/.test(password)) {
+        if (!/^(?=.*[A-Z])(?=.*[!@#$%^&*(),.?":{}|<>])[A-Za-z0-9\s!@#$%^&*(),.?":{}|<>]{6,}$/.test(password)) {
             return setdoneerror(<p className="text-red-500">Password must be at least 6 characters long and contain at least one capital letter.</p>)
         }
+
+
         createuser(email, password)
             .then(result => {
                 console.log(result.user);
@@ -102,7 +104,7 @@ const Register = () => {
                                 </label>
                                 <div className="w-full relative">
                                     <input onChange={handlepassvalue} type={showpass ? 'password' : 'text'} name="password" placeholder="Your password" className="input input-bordered w-full" required />
-                                    <p  onClick={() => (setshowpass(!showpass))} className={`absolute top-3 right-0 mr-2 cursor-pointer text-lg  p-1 ${!passvalue && 'hidden' }`}>{showpass ? <AiOutlineEye></AiOutlineEye> : <AiOutlineEyeInvisible></AiOutlineEyeInvisible>}</p>
+                                    <p onClick={() => (setshowpass(!showpass))} className={`absolute top-3 right-0 mr-2 cursor-pointer text-lg  p-1 ${!passvalue && 'hidden'}`}>{showpass ? <AiOutlineEye></AiOutlineEye> : <AiOutlineEyeInvisible></AiOutlineEyeInvisible>}</p>
                                 </div>
                                 <div className="text-sm font-bold">{doneerror}</div>
                                 <label className="label">

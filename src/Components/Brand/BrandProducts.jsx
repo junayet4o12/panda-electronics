@@ -1,9 +1,9 @@
 // import React from 'react';
 
-import { Link, useLoaderData,  useParams } from "react-router-dom";
+import { Link, useLoaderData, useParams } from "react-router-dom";
 import { Swiper, SwiperSlide } from 'swiper/react';
 
-import { Navigation, Scrollbar, A11y,Autoplay } from 'swiper/modules';
+import { Navigation, Scrollbar, A11y, Autoplay } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/bundle';
 import 'swiper/css/navigation';
@@ -20,18 +20,26 @@ import { AiOutlineStar, AiFillStar } from 'react-icons/ai';
 
 const BrandProducts = () => {
     const loadeddata = useLoaderData();
-     const [products, setproducts] = useState([]);
-    const {id: brand} = useParams();
-    
-   
-    const { id, name, img, banner1, banner2, banner3, title } =loadeddata;
+    const [products, setproducts] = useState([]);
+    const [loading, setloading] = useState(true)
+    const { id: brand } = useParams();
+
+
+    const { id, name, img, banner1, banner2, banner3, title } = loadeddata;
     useEffect(() => {
-        fetch(`http://localhost:3000/${name}`)
+        setloading(true)
+        fetch(`https://panda-technology-and-electronics-backend-qzcawtmyu.vercel.app/${name}`)
             .then(res => res.json())
             .then(data => {
                 setproducts(data);
+                setloading(false)
             })
     }, [])
+
+
+    if (loading) {
+        return <div className="h-[100vh] flex justify-center items-center"> <span className="loading loading-spinner text-primary"></span></div>
+    }
     return (
         <div className="max-w-7xl mx-auto">
 
@@ -39,7 +47,7 @@ const BrandProducts = () => {
                 <div >
 
                     <div className={`overflow-hidden`}>
-                        <Swiper className={`${products.length<1 ? 'mt-[-1000px]': ''}`}
+                        <Swiper className={`${products.length < 1 ? 'mt-[-1000px]' : ''}`}
                             modules={[Navigation, Scrollbar, A11y, EffectCube, Autoplay]}
                             spaceBetween={50}
                             slidesPerView={1}
@@ -61,7 +69,7 @@ const BrandProducts = () => {
 
                         </Swiper>
                     </div>
-          
+
                     <div className={`${(products.length < 1) ? 'hidden' : 'block'}`}>
                         <h2 className="text-4xl font-bold text-center py-7">{title}s</h2>
                         <div className="flex flex-wrap justify-center items-center gap-7 my-10 p-4">
@@ -85,11 +93,11 @@ const BrandProducts = () => {
                                                 </div>
                                             </div>
                                         </div>
-                                        <div className="p-2 flex flex-col justify-between pb-7">
+                                        <div className="p-2 flex flex-col justify-between pb-7 text-black">
                                             <div>
                                                 <p className="text-xl font-bold "> Brand: {product?.brandname}</p>
                                                 <p className=" font-bold ">Price: {product?.price} BDT</p>
-                                                <p className="text-sm font-semibold max-w-[280px] sm:max-w-[400px]">{(product?.details?.length>100)? ((product?.details)?.slice(0, 100)+'....'): product?.details}</p>
+                                                <p className="text-sm font-semibold max-w-[280px] sm:max-w-[400px]">{(product?.details?.length > 100) ? ((product?.details)?.slice(0, 100) + '....') : product?.details}</p>
                                             </div>
                                             <div className=" gap-4 sm:text-end px-4 mt-6">
 
@@ -97,7 +105,7 @@ const BrandProducts = () => {
                                                 <Link to={`/update/${brand}/${product._id}`}><button className="btn btn-neutral mr-4">Update</button></Link>
 
 
-                                               
+
 
                                             </div>
                                         </div>
@@ -108,8 +116,8 @@ const BrandProducts = () => {
                     </div>
                 </div>
             </div>
-            <div 
-              className={`${!(products.length < 1) ? 'hidden' : 'block'}`}
+            <div
+                className={`${!(products.length < 1) ? 'hidden' : 'block'}`}
             >
                 <div className="flex flex-col justify-center items-center gap-5 h-[100vh]">
                     <h2 className="text-9xl font-bold text-red-500"><FaRegFaceSadTear></FaRegFaceSadTear></h2>
