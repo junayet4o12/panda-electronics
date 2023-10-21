@@ -13,6 +13,7 @@ import PrivateRouts from "./Components/PrivateRouts";
 import AddToCart from "./Components/AddToCart";
 import UpdateProduct from "./Components/UpdateProduct";
 import Error from "./Components/Error/Error";
+// import Login2 from "./Components/Login2";
 
 const Myrouter = createBrowserRouter([
     {
