@@ -68,7 +68,7 @@ const AddProducts = () => {
     return (
         <div className="pt-24 max-w-7xl mx-auto">
             <h2 className="text-3xl font-bold text-center  uppercase ">Add Your <br/><span className="font-extrabold text-4xl text-purple-500">Customized product</span> </h2>
-            <p className={`text-sm font-bold text-center  p-4 px-10 max-w-3xl  mx-auto pb-10 ${theme ? 'text-purple-700' : 'text-purple-400'}`}>You have the flexibility to create your very own customized product tailored to your specific needs and preferences. You can easily add this personalized item to your shopping cart, making it a seamless and convenient process for you.</p>
+            <p className={`text-sm font-bold text-center  p-4 px-10 max-w-3xl  mx-auto pb-10 ${theme ? 'text-purple-700' : 'text-purple-400'}`}>You have the flexibility to create your very own customized product tailored to your specific needs and preferences. You can easily add this to your shopping cart.</p>
             <form onSubmit={handleAddingData} className="text-black mx-auto sm:w-[90%]">
                 <div className="flex flex-col  gap-8 lg:w-[90%] mx-auto">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-x-4 gap-y-8 px-4">

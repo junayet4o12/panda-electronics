@@ -62,7 +62,7 @@ const AddToCart = () => {
             <div className={`${(products?.length < 1) ? 'hidden' : 'block'} py-24`}>
                 <div>
                 <h2 className="text-3xl font-bold text-center  uppercase ">My  <br/><span className="font-extrabold text-4xl text-purple-500">added  products</span> </h2>
-            <p className={`text-sm font-bold text-center  p-4 px-10 max-w-3xl  mx-auto pb-10 ${theme ? 'text-purple-700' : 'text-purple-400'}`}>You can conveniently view all the items you&apos;ve added to your shopping cart right here. Moreover, you have the option to easily remove any items from your cart that you no longer wish to keep, ensuring a hassle-free and tailored shopping experience.</p>
+            <p className={`text-sm font-bold text-center  p-4 px-10 max-w-3xl  mx-auto pb-10 ${theme ? 'text-purple-700' : 'text-purple-400'}`}>You can conveniently view all the items you&apos;ve added to your shopping cart right here. Moreover, you have the option to easily remove any items from your cart .</p>
                     <div className="flex flex-wrap justify-center items-center gap-7 my-10 p-4">
                         {
                             products?.map(product => <div key={product?._id} className="shadow-lg shadow-black rounded-xl bg-gray-100 w-[80%] sm:w-max">
