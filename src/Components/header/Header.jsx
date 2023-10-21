@@ -6,18 +6,22 @@ import logo from '../../assets/pandalogo.com.png'
 import { AuthContext } from "../Firebase.jsx/AuthProviders";
 import { useContext } from "react";
 import userimg from '../../assets/pandaface.webp'
+import { MdAppRegistration, MdOutlineLogin } from 'react-icons/md';
+import { RiLogoutBoxLine } from 'react-icons/ri';
+import { RxHome } from 'react-icons/rx';
 const Header = () => {
+    const {theme} = useContext(AuthContext)
     const { user, logout } = useContext(AuthContext);
   
     
     const navli = <>
-        <li ><NavLink className='p-1.5 hover:underline' to='/'>Home</NavLink></li>
+        <li ><NavLink className='p-1.5 hover:underline flex  items-center gap-1' to='/'><RxHome></RxHome>Home</NavLink></li>
         <hr />
         <li><NavLink className='p-1.5 hover:underline' to='/addproducts'>Add Product</NavLink></li>
         <hr />
         <li><NavLink className='p-1.5 hover:underline' to='/mycart'>My Cart</NavLink></li>
         <hr />
-        <li><NavLink className='p-1.5 hover:underline' to='/login'>Login</NavLink></li>
+        <li><NavLink className='p-1.5 hover:underline flex  items-center gap-1' to='/login '><MdOutlineLogin></MdOutlineLogin><span>Login</span></NavLink></li>
 
     </>
     return (
@@ -39,7 +43,7 @@ const Header = () => {
                         </a>
                     </div>
                     <div className="navbar-center hidden md:flex">
-                        <ul className="flex gap-3 px-1 activelink">
+                        <ul className="flex justify-center items-center gap-3 px-1 activelink">
                             {navli}
                         </ul>
                     </div>
@@ -54,10 +58,10 @@ const Header = () => {
                                          </div>
                                         <p className='text-white font-bold font-sm hidden sm:block'>{user?.displayName?.split(' ')[0] || 'Undefined'}</p>
                                     </div>
-                                    <button onClick={() => logout()} className="btn btn-primary text-white font-bold border-none px-5">log out</button>
+                                    <p onClick={() => logout()} className={`btn flex flex-col justify-center items-center   w-max   font-bold border-none bg-[#b23b3b] text-white hover:bg-[#d33333] gap-1`}><span>logOut</span><span className="text-lg"><RiLogoutBoxLine></RiLogoutBoxLine></span></p>
 
                                 </> : <Link to='/register'>
-                                    <button className="btn btn-primary text-white font-bold border-none px-5">Register</button>
+                                    <button className="btn btn-primary text-white font-bold border-none flex flex-col justify-center items-center gap-1"><span>Register</span><span className="text-lg"><MdAppRegistration></MdAppRegistration></span></button>
                                 </Link>
 
                             }

@@ -7,6 +7,7 @@ import { useContext, useState } from "react";
 import { AuthContext } from "./Firebase.jsx/AuthProviders";
 import { FaGoogle } from 'react-icons/fa';
 import { AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai';
+import { MdAppRegistration } from 'react-icons/md';
 const Register = () => {
     const [doneerror, setdoneerror] = useState('')
     const [showpass, setshowpass] = useState(true);
@@ -112,8 +113,9 @@ const Register = () => {
                                 </label>
                             </div>
                             <div className="form-control mt-6">
-                                <button className="btn btn-primary">Register</button>
-                                <p onClick={handlegooglelogin} className="btn btn-primary mt-4"><FaGoogle></FaGoogle>Log in with Google</p>
+                                <button className="btn btn-primary"><span className="text-xl"><MdAppRegistration></MdAppRegistration></span>Register</button>
+                                <p className="text-sm font-bold text-center mt-2">Or</p>
+                                <p onClick={handlegooglelogin} className="btn btn-primary mt-2"><FaGoogle></FaGoogle>Log in with Google</p>
                             </div>
                             <div>
                                 <p className="text-sm font-medium text-center">Already have an account? <Link className="font-bold hover:text-blue-500" to='/login'>Log in</Link></p>

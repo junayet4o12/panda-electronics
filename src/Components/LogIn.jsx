@@ -6,6 +6,7 @@ import Swal from "sweetalert2";
 import { AuthContext } from "./Firebase.jsx/AuthProviders";
 import { FaGoogle } from 'react-icons/fa';
 import { AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai';
+import {  MdOutlineLogin } from 'react-icons/md';
 const LogIn = () => {
     const [doneerror, setdoneerror] = useState('')
     const [showpass, setshowpass] = useState(true);
@@ -95,9 +96,9 @@ const LogIn = () => {
                                 </label>
                             </div>
                             <div className="form-control mt-6">
-                                <button className="btn btn-primary">Login</button>
-
-                                <p onClick={handlegooglelogin} className="btn btn-primary mt-4 "><FaGoogle></FaGoogle>Log in with Google</p>
+                                <button className="btn btn-primary"><span className="text-xl"><MdOutlineLogin></MdOutlineLogin></span>Login</button>
+                                <p className="text-sm font-bold text-center mt-2">Or</p>
+                                <p onClick={handlegooglelogin} className="btn btn-primary mt-2 "><FaGoogle></FaGoogle>Log in with Google</p>
 
 
                             </div>
